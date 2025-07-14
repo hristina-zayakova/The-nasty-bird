@@ -1,0 +1,52 @@
+{% extends 'base_no_nav_bar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/onboarding.css' %}">
+
+<div class="onboarding-page">
+    <!-- Logo -->
+    <div class="onboarding-logo">
+        <img src="{% static 'images/logo.png' %}" alt="Budgie Logo" class="onboarding-logo-image">
+        <span class="onboarding-logo-text"></span>
+    </div>
+
+    <!-- Preferences Card -->
+    <div class="onboarding-card">
+        <h2 class="onboarding-title">Preferences</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="onboarding-form-group">
+                <label>{{ form.currency.label }}</label>
+                {{ form.currency }}
+                {% if form.currency.errors %}
+                    <small style="color: red;">{{ form.currency.errors }}</small>
+                {% endif %}
+            </div>
+
+            <div class="onboarding-checkbox-group">
+                {{ form.email_notifications }}
+                <label class="onboarding-checkbox-label">{{ form.email_notifications.label }}</label>
+            </div>
+
+            <div class="onboarding-checkbox-group">
+                {{ form.budget_alerts }}
+                <label class="onboarding-checkbox-label">{{ form.budget_alerts.label }}</label>
+            </div>
+
+            <div class="onboarding-checkbox-group">
+                {{ form.weekly_reports }}
+                <label class="onboarding-checkbox-label">{{ form.weekly_reports.label }}</label>
+            </div>
+
+            <div class="onboarding-buttons">
+                <button type="submit" class="onboarding-btn-primary">Finish</button>
+                <span></span>
+                <a href="{% url 'personal_info_step' %}" class="onboarding-btn-secondary">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

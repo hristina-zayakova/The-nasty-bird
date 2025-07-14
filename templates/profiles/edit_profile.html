@@ -1,0 +1,97 @@
+{% extends 'base_no_nav_bar.html' %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/onboarding.css' %}">
+<div class="onboarding-page">
+    <!-- Logo section -->
+    <div class="onboarding-logo">
+        <img src="{% static 'images/logo.png' %}" alt="Budgie Logo" class="onboarding-logo-image">
+    </div>
+    
+    <!-- Main form card -->
+    <div class="onboarding-card">
+        <h1 class="onboarding-title">Edit Profile</h1>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div style="background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- First Name -->
+            <div class="onboarding-form-group">
+                <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+                {{ form.first_name }}
+            </div>
+
+            <!-- Last Name -->
+            <div class="onboarding-form-group">
+                <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+                {{ form.last_name }}
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="onboarding-form-group">
+                <label for="{{ form.date_of_birth.id_for_label }}">Date of Birth:</label>
+                {{ form.date_of_birth }}
+            </div>
+
+            <!-- Phone Number -->
+            <div class="onboarding-form-group">
+                <label for="{{ form.phone_number.id_for_label }}">Phone Number:</label>
+                {{ form.phone_number }}
+            </div>
+
+            <!-- Profile Picture -->
+            <div class="onboarding-form-group">
+                <label for="{{ form.profile_picture.id_for_label }}">Profile Picture:</label>
+                {{ form.profile_picture }}
+            </div>
+
+            <!-- Currency -->
+            <div class="onboarding-form-group">
+                <label for="{{ form.currency.id_for_label }}">Currency:</label>
+                {{ form.currency }}
+            </div>
+
+            <!-- Email Notifications -->
+            <div class="onboarding-checkbox-group">
+                {{ form.email_notifications }}
+                <label for="{{ form.email_notifications.id_for_label }}" class="onboarding-checkbox-label">
+                    Email Notifications
+                </label>
+            </div>
+
+            <!-- Budget Alerts -->
+            <div class="onboarding-checkbox-group">
+                {{ form.budget_alerts }}
+                <label for="{{ form.budget_alerts.id_for_label }}" class="onboarding-checkbox-label">
+                    Budget Alerts
+                </label>
+            </div>
+
+            <!-- Weekly Reports -->
+            <div class="onboarding-checkbox-group">
+                {{ form.weekly_reports }}
+                <label for="{{ form.weekly_reports.id_for_label }}" class="onboarding-checkbox-label">
+                    Weekly Reports
+                </label>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="onboarding-buttons">
+                <button type="submit" class="onboarding-btn-primary">Save Changes</button>
+                <a href="{% url 'home' %}" class="onboarding-btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

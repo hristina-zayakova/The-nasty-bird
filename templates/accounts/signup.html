@@ -1,0 +1,53 @@
+{% extends 'base_no_nav_bar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+
+<div class="auth-page">
+    <!-- Logo with actual image -->
+    <div class="auth-logo">
+        <img src="{% static 'images/logo.png' %}" alt="Budgie Logo" class="auth-logo-image">
+        <span class="auth-logo-text"></span>
+    </div>
+
+     <!-- Signup Card -->
+    <div class="auth-card signup">
+        <h2 class="auth-title">Sign Up</h2>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="auth-form-group">
+                <label>{{ form.email.label }}</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <small style="color: red;">{{ form.email.errors }}</small>
+                {% endif %}
+            </div>
+
+            <div class="auth-form-group">
+                <label>{{ form.password1.label }}</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <small style="color: red;">{{ form.password1.errors }}</small>
+                {% endif %}
+            </div>
+
+            <div class="auth-form-group">
+                <label>{{ form.password2.label }}</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <small style="color: red;">{{ form.password2.errors }}</small>
+                {% endif %}
+            </div>
+
+            <div class="auth-buttons">
+                <button type="submit" class="auth-btn-primary">Sign up</button>
+                <span class="auth-or">or</span>
+                <a href="{% url 'login' %}" class="auth-btn-secondary">Go to Login</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

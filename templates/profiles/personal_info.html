@@ -1,0 +1,69 @@
+{% extends 'base_no_nav_bar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/onboarding.css' %}">
+
+<div class="onboarding-page">
+    <!-- Logo -->
+    <div class="onboarding-logo">
+        <img src="{% static 'images/logo.png' %}" alt="Budgie Logo" class="onboarding-logo-image">
+        <span class="onboarding-logo-text"></span>
+    </div>
+
+    <!-- Personal Info Card -->
+    <div class="onboarding-card">
+        <h2 class="onboarding-title">Personal Information</h2>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="onboarding-form-group">
+                <label>{{ form.first_name.label }}</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                    <small style="color: red;">{{ form.first_name.errors }}</small>
+                {% endif %}
+            </div>
+
+            <div class="onboarding-form-group">
+                <label>{{ form.last_name.label }}</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                    <small style="color: red;">{{ form.last_name.errors }}</small>
+                {% endif %}
+            </div>
+
+            <div class="onboarding-form-group">
+                <label>{{ form.date_of_birth.label }}</label>
+                {{ form.date_of_birth }}
+                {% if form.date_of_birth.errors %}
+                    <small style="color: red;">{{ form.date_of_birth.errors }}</small>
+                {% endif %}
+            </div>
+
+            <div class="onboarding-form-group">
+                <label>{{ form.phone_number.label }}</label>
+                {{ form.phone_number }}
+                {% if form.phone_number.errors %}
+                    <small style="color: red;">{{ form.phone_number.errors }}</small>
+                {% endif %}
+            </div>
+
+            <div class="onboarding-form-group">
+                <label>{{ form.profile_picture.label }}</label>
+                {{ form.profile_picture }}
+                {% if form.profile_picture.errors %}
+                    <small style="color: red;">{{ form.profile_picture.errors }}</small>
+                {% endif %}
+            </div>
+
+            <div class="onboarding-buttons">
+                <button type="submit" class="onboarding-btn-primary">Next</button>
+                <span></span>
+                <a href="{% url 'home' %}" class="onboarding-btn-secondary">Skip for now</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

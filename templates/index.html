@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Landing Page Hero -->
+    <div class="landing-hero">
+        <!-- Top Get Started Button -->
+        <div class="text-center mb-5">
+            {% if not user.is_authenticated %}
+                <a href="/accounts/signup/" class="btn btn-budgie-primary">
+                    Get Started
+                </a>
+            {% else %}
+                <a href="/dashboard/" class="btn btn-budgie-primary">
+                    Go to Dashboard
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="hero-title text-center">Take control of your finances with Budgie</h1>
+
+        <!-- Second Get Started Button -->
+        <div class="text-center mb-5">
+            {% if not user.is_authenticated %}
+                <a href="/accounts/signup/" class="btn btn-budgie-primary">
+                    Get Started
+                </a>
+            {% else %}
+                <a href="/dashboard/" class="btn btn-budgie-primary">
+                    Go to Dashboard
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- Dashboard Mockup -->
+        <div class="dashboard-mockup mx-auto">
+            <!-- Navigation Bar -->
+            <div class="mockup-nav">
+                <div class="mockup-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="Budgie Logo" height="40">
+                </div>
+                <div class="mockup-nav-items">
+                    <span class="nav-item active">Home</span>
+                    <span class="nav-item">Expenses</span>
+                    <span class="nav-item">Categories</span>
+                    <span class="nav-item">Subscriptions</span>
+                </div>
+                <div class="mockup-user">
+                    Welcome, [username] Logout
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="mockup-content">
+                <h2 class="mockup-title">Dashboard</h2>
+
+                <!-- Stats Cards -->
+                <div class="mockup-stats">
+                    <div class="mockup-card">
+                        <div class="stat-title">Total Expenses</div>
+                        <div class="stat-amount">$2,500</div>
+                        <div class="stat-subtitle">this month</div>
+                        <button class="btn-yellow-small">Add Expense</button>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="stat-title">Remaining Budget</div>
+                        <div class="stat-amount">$1,500</div>
+                        <div class="stat-subtitle">of $4,000 (20%)</div>
+                        <button class="btn-yellow-small">Set Budget</button>
+                        <!-- Simple pie chart representation -->
+                        <div class="pie-chart">
+
+                        </div>
+                    </div>
+
+                    <div class="mockup-card">
+                        <div class="stat-title">Subscriptions</div>
+                        <div class="stat-amount">$300</div>
+                        <div class="stat-subtitle">this month</div>
+                        <button class="btn-yellow-small">Add Subscription</button>
+                    </div>
+                </div>
+
+                <!-- Recent Expenses Table -->
+                <div class="mockup-table">
+                    <div class="table-header">
+                        <span class="table-title">Recent Expenses</span>
+                        <button class="btn-yellow-small">View All</button>
+                    </div>
+                    <div class="table-headers">
+                        <span>Date</span>
+                        <span>Category</span>
+                        <span>Description</span>
+                        <span>Amount</span>
+                        <span></span>
+                    </div>
+                    <div class="table-row">
+                        <span>Jul 6, 2025</span>
+                        <span>Groceries</span>
+                        <span>Weekly Shopping</span>
+                        <span>$50.00</span>
+                        <button class="btn-yellow-mini">Edit</button>
+                    </div>
+                    <div class="table-row">
+                        <span>Jul 6, 2025</span>
+                        <span>Transportation</span>
+                        <span>Gas for car</span>
+                        <span>$25.00</span>
+                        <button class="btn-yellow-mini">Edit</button>
+                    </div>
+                    <div class="table-row">
+                        <span>Jul 6, 2025</span>
+                        <span>Food</span>
+                        <span>Coffee shop</span>
+                        <span>$15.00</span>
+                        <button class="btn-yellow-mini">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-bottom">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-4">
+                    <div class="feature-step">
+                        <h3>1.</h3>
+                        <h4>Track your expenses</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature-step">
+                        <h3>2.</h3>
+                        <h4>Set personalized budgets</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature-step">
+                        <h3>3.</h3>
+                        <h4>Monitor your subscriptions</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
