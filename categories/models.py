@@ -20,16 +20,6 @@ class Category(models.Model):
         null=True,
         help_text="Optional description of what this category includes"
     )
-    color = models.CharField(
-        max_length=7,
-        default='#6B8E23',
-        help_text="Color for charts and visual representation"
-    )
-    icon = models.CharField(
-        max_length=50,
-        default='fas fa-shopping-cart',
-        help_text="Choose an icon to represent this category"
-    )
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,

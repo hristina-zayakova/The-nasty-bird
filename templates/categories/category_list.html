@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Categories{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/secondary_apps.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="categories-container">
+    <!-- Header -->
+    <div class="categories-header">
+        <h1 class="categories-title">Categories</h1>
+        <a href="{% url 'add_category' %}" class="add-category-btn">Add Category</a>
+    </div>
+
+    {% if categories_with_data %}
+        <!-- Chart Section -->
+        <div class="chart-section">
+            <h2 class="chart-title">Expenses by Category</h2>
+            <div class="chart-container">
+                <div class="chart-y-labels">
+                    <span>$3k</span>
+                    <span>$2k</span>
+                    <span>$1k</span>
+                    <span>$0</span>
+                </div>
+                <div class="chart-bars">
+                    {% for item in categories_with_data %}
+                        <div class="chart-bar">
+                            <div class="bar" style="height: {{ item.bar_height }}px; min-height: 5px;"></div>
+                            <div class="bar-label">{{ item.category.name|truncatechars:10 }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-section">
+            <h2 class="table-title">All Categories</h2>
+            <table class="categories-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in categories_with_data %}
+                    <tr>
+                        <td class="category-name">{{ item.category.name }}</td>
+                        <td class="category-description">{{ item.category.description|default:"No description" }}</td>
+                        <td class="category-amount">${{ item.category.total_expenses|default:0|floatformat:2 }}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{% url 'edit_category' item.category.pk %}" class="btn-edit">Edit</a>
+                                <a href="#" class="btn-add-expense">Add Expense</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <!-- Empty State -->
+        <div class="chart-section">
+            <div class="empty-state">
+                <p>No categories yet.</p>
+                <a href="{% url 'add_category' %}" class="add-category-btn">Create Your First Category</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,296 @@
+/* Categories Dashboard Styling */
+
+/* Override the yellow body background for app pages */
+body {
+    background-color: #FFFFFF !important;
+}
+
+/* Apply gradient only to navbar */
+.navbar {
+    background: linear-gradient(180deg, rgba(255, 224, 62, 0.3) 0%, rgba(254, 224, 62, 0) 100%) !important;
+    border-top: 1px solid #1B221B;
+}
+
+.categories-container {
+    padding: 2rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #FFFFFF;
+}
+
+.categories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.categories-title {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #1B221B;
+    letter-spacing: -0.02em;
+}
+
+.add-category-btn {
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    color: #1B221B;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.add-category-btn:hover {
+    background: #FFD700;
+    color: #1B221B;
+    text-decoration: none;
+}
+
+.chart-section {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.chart-title {
+    font-family: 'Roboto Serif', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1B221B;
+    margin-bottom: 1.5rem;
+}
+
+.chart-container {
+    height: 300px;
+    position: relative;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    height: 240px;
+    padding: 0 1rem;
+    border-bottom: 1px solid #E0E0E0;
+    margin-bottom: 1rem;
+}
+
+.chart-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.bar {
+    background: #4A931C;
+    width: 40px;
+    border-radius: 4px 4px 0 0;
+    transition: background-color 0.2s;
+}
+
+.bar:hover {
+    background: #3A7A15;
+}
+
+.bar-label {
+    font-family: 'Roboto Serif', serif;
+    font-size: 12px;
+    color: #1B221B;
+    text-align: center;
+    margin-top: 0.5rem;
+    word-break: break-word;
+}
+
+.chart-y-labels {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Roboto Serif', serif;
+    font-size: 12px;
+    color: #666;
+}
+
+.table-section {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table-title {
+    font-family: 'Roboto Serif', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1B221B;
+    margin-bottom: 1.5rem;
+}
+
+.categories-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.categories-table th {
+    font-family: 'Roboto Serif', serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1B221B;
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 2px solid #E0E0E0;
+}
+
+.categories-table td {
+    font-family: 'Roboto Serif', serif;
+    font-size: 14px;
+    color: #1B221B;
+    padding: 1rem;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.category-name {
+    font-weight: 500;
+}
+
+.category-description {
+    color: #666;
+    max-width: 300px;
+}
+
+.category-amount {
+    font-weight: 600;
+    color: #4A931C;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-edit, .btn-add-expense {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid #1B221B;
+    transition: all 0.2s;
+}
+
+.btn-edit {
+    background: #FFDF3E;
+    color: #1B221B;
+}
+
+.btn-edit:hover {
+    background: #FFD700;
+    color: #1B221B;
+    text-decoration: none;
+}
+
+.btn-add-expense {
+    background: white;
+    color: #1B221B;
+}
+
+.btn-add-expense:hover {
+    background: #F5F5F5;
+    color: #1B221B;
+    text-decoration: none;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+}
+
+.empty-state p {
+    font-family: 'Roboto Serif', serif;
+    font-size: 16px;
+    margin-bottom: 1rem;
+}
+
+/* Category Form Styling */
+.category-form-container {
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.category-form-title {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #1B221B;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+}
+
+.category-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.category-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Roboto Serif', serif;
+    font-size: 14px;
+    color: #1B221B;
+}
+
+.category-form-input {
+    width: 100%;
+    padding: 14px 24px;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    font-family: 'Roboto Serif', serif;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.category-form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.category-btn-save, .category-btn-cancel {
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid #1B221B;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.category-btn-save {
+    background: #FFDF3E;
+    color: #1B221B;
+}
+
+.category-btn-cancel {
+    background: white;
+    color: #1B221B;
+}

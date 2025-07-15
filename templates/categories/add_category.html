@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Add Category{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/secondary_apps.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="category-form-container">
+    <h1 class="category-form-title">Add Category</h1>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="category-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="category-form-group">
+            <label for="{{ form.name.id_for_label }}" class="category-form-label">Name</label>
+            {{ form.name }}
+            {% if form.name.errors %}
+                {% for error in form.name.errors %}
+                    <div class="category-error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="category-form-group">
+            <label for="{{ form.description.id_for_label }}" class="category-form-label">Description</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+                {% for error in form.description.errors %}
+                    <div class="category-error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="category-form-buttons">
+            <button type="submit" class="category-btn-save">Save</button>
+            <a href="{% url 'categories_list' %}" class="category-btn-cancel">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
