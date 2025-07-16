@@ -31,7 +31,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/expenses/">
+                            <a class="nav-link" href="{% url 'add_expense' %}">
                                 Expenses
                             </a>
                         </li>
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"> <!--TODO careful with links -->
                                 Welcome, {{ user.profile.first_name|default:user.email }}
                             </a>
                             <ul class="dropdown-menu">

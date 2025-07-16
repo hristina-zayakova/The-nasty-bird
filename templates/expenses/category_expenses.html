@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ category.name }} Expenses{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/secondary_apps.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="categories-container">
+    <!-- Header -->
+    <div class="categories-header">
+        <h1 class="categories-title">{{ category.name }} Expenses</h1>
+        <a href="{% url 'add_expense' %}" class="add-category-btn">Add Expense</a>
+    </div>
+
+    {% if expenses %}
+        <!-- Expenses Table -->
+        <div class="table-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 class="table-title">All Expenses</h2>
+                <div style="color: #666; font-family: 'Roboto Serif', serif;">
+                    Total: <span style="font-weight: 600; color: #4A931C;">{{ user_currency }} {{ total_amount|floatformat:2 }}</span>
+                </div>
+            </div>
+            
+            <table class="categories-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in expenses %}
+                    <tr>
+                        <td class="category-name">{{ expense.description }}</td>
+                        <td class="category-amount">{{ user_currency }} {{ expense.amount|floatformat:2 }}</td>
+                        <td style="font-family: 'Roboto Serif', serif; font-size: 14px; color: #1B221B;">
+                            {{ expense.date|date:"M d, Y" }}
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{% url 'edit_expense' expense.pk %}" class="btn-edit">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <!-- Empty State -->
+        <div class="chart-section">
+            <div class="empty-state">
+                <p>No expenses in {{ category.name }} yet.</p>
+                <a href="{% url 'add_expense' %}" class="add-category-btn">Add Your First Expense</a>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Back to Categories Button -->
+    <div style="margin-top: 2rem; text-align: center;">
+        <a href="{% url 'categories_list' %}" class="category-btn-cancel">← Back to Categories</a>
+    </div>
+</div>
+{% endblock %}

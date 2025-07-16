@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Expense{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/secondary_apps.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="category-form-container">
+    <h1 class="category-form-title">Edit Expense</h1>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="category-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="category-form-group">
+            <label for="{{ form.description.id_for_label }}" class="category-form-label">Name</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+                {% for error in form.description.errors %}
+                    <div class="category-error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="category-form-group">
+            <label for="{{ form.amount.id_for_label }}" class="category-form-label">Amount</label>
+            {{ form.amount }}
+            {% if form.amount.errors %}
+                {% for error in form.amount.errors %}
+                    <div class="category-error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="category-form-group">
+            <label for="{{ form.category.id_for_label }}" class="category-form-label">Category</label>
+            {{ form.category }}
+            {% if form.category.errors %}
+                {% for error in form.category.errors %}
+                    <div class="category-error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="category-form-group">
+            <label for="{{ form.date.id_for_label }}" class="category-form-label">Date</label>
+            {{ form.date }}
+            {% if form.date.errors %}
+                {% for error in form.date.errors %}
+                    <div class="category-error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="category-form-buttons">
+            <button type="submit" class="category-btn-save">Save</button>
+            <a href="{% url 'categories_list' %}" class="category-btn-cancel">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

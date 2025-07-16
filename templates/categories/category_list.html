@@ -18,24 +18,23 @@
     {% if categories_with_data %}
         <!-- Chart Section -->
         <div class="chart-section">
-            <h2 class="chart-title">Expenses by Category</h2>
-            <div class="chart-container">
-                <div class="chart-y-labels">
-                    <span>$3k</span>
-                    <span>$2k</span>
-                    <span>$1k</span>
-                    <span>$0</span>
-                </div>
-                <div class="chart-bars">
-                    {% for item in categories_with_data %}
-                        <div class="chart-bar">
-                            <div class="bar" style="height: {{ item.bar_height }}px; min-height: 5px;"></div>
-                            <div class="bar-label">{{ item.category.name|truncatechars:10 }}</div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
+    <h2 class="chart-title">Expenses by Category</h2>
+    <div class="chart-container">
+        <div class="chart-y-labels">
+            {% for label in y_labels %}
+                <span>{{ user_currency }} {{ label|floatformat:0 }}</span>
+            {% endfor %}
         </div>
+        <div class="chart-bars">
+            {% for item in categories_with_data %}
+                <div class="chart-bar">
+                    <div class="bar" style="height: {{ item.bar_height }}px; min-height: 5px;"></div>
+                    <div class="bar-label">{{ item.category.name|truncatechars:10 }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
         <!-- Table Section -->
         <div class="table-section">
@@ -54,11 +53,12 @@
                     <tr>
                         <td class="category-name">{{ item.category.name }}</td>
                         <td class="category-description">{{ item.category.description|default:"No description" }}</td>
-                        <td class="category-amount">${{ item.category.total_expenses|default:0|floatformat:2 }}</td>
+                        <td class="category-amount">{{ user_currency }} {{ item.category.total_expenses|default:0|floatformat:2 }}</td>
                         <td>
                             <div class="action-buttons">
                                 <a href="{% url 'edit_category' item.category.pk %}" class="btn-edit">Edit</a>
-                                <a href="#" class="btn-add-expense">Add Expense</a>
+                                <a href="{% url 'add_expense' %}" class="btn-add-expense">Add Expense</a>
+                                <a href="{% url 'category_expenses' item.category.pk %}" class="btn-show-expenses">Show Expenses</a>
                             </div>
                         </td>
                     </tr>

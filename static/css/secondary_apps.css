@@ -294,3 +294,26 @@ body {
     background: white;
     color: #1B221B;
 }
+
+/* More specific selector to override default link styles */
+.categories-table .action-buttons .btn-show-expenses,
+a.btn-show-expenses {
+    padding: 8px 16px !important;
+    border-radius: 6px !important;
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    border: 1px solid #1B221B !important;
+    background: white !important;
+    color: #1B221B !important;
+    display: inline-block !important;
+    box-sizing: border-box !important;
+}
+
+.categories-table .action-buttons .btn-show-expenses:hover,
+a.btn-show-expenses:hover {
+    background: #F5F5F5 !important;
+    color: #1B221B !important;
+    text-decoration: none !important;
+}
