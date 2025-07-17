@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Edit Expense{% endblock %}
+{% block title %}Add Subscription{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/secondary_apps.css' %}">
@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="category-form-container">
-    <h1 class="category-form-title">Edit Expense</h1>
+    <h1 class="category-form-title">Add Subscription</h1>
     
     {% if messages %}
         {% for message in messages %}
@@ -21,10 +21,10 @@
         {% csrf_token %}
         
         <div class="category-form-group">
-            <label for="{{ form.description.id_for_label }}" class="category-form-label">Name</label>
-            {{ form.description }}
-            {% if form.description.errors %}
-                {% for error in form.description.errors %}
+            <label for="{{ form.name.id_for_label }}" class="category-form-label">Name</label>
+            {{ form.name }}
+            {% if form.name.errors %}
+                {% for error in form.name.errors %}
                     <div class="category-error">{{ error }}</div>
                 {% endfor %}
             {% endif %}
@@ -41,20 +41,20 @@
         </div>
         
         <div class="category-form-group">
-            <label for="{{ form.category.id_for_label }}" class="category-form-label">Category</label>
-            {{ form.category }}
-            {% if form.category.errors %}
-                {% for error in form.category.errors %}
+            <label for="{{ form.frequency.id_for_label }}" class="category-form-label">Type</label>
+            {{ form.frequency }}
+            {% if form.frequency.errors %}
+                {% for error in form.frequency.errors %}
                     <div class="category-error">{{ error }}</div>
                 {% endfor %}
             {% endif %}
         </div>
         
         <div class="category-form-group">
-            <label for="{{ form.date.id_for_label }}" class="category-form-label">Date</label>
-            {{ form.date }}
-            {% if form.date.errors %}
-                {% for error in form.date.errors %}
+            <label for="{{ form.next_payment_date.id_for_label }}" class="category-form-label">Date</label>
+            {{ form.next_payment_date }}
+            {% if form.next_payment_date.errors %}
+                {% for error in form.next_payment_date.errors %}
                     <div class="category-error">{{ error }}</div>
                 {% endfor %}
             {% endif %}
@@ -62,9 +62,7 @@
         
         <div class="category-form-buttons">
             <button type="submit" class="category-btn-save">Save</button>
-            <a href="{% url 'categories_list' %}" class="category-btn-cancel">Cancel</a>
-            <a href="{% url 'delete_expense' object.pk %}" class="category-btn-delete"
-            onclick="return confirm('Are you sure you want to delete this expense?')">Delete</a>
+            <a href="{% url 'subscription_list' %}" class="category-btn-cancel">Cancel</a>
         </div>
     </form>
 </div>

@@ -317,3 +317,29 @@ a.btn-show-expenses:hover {
     color: #1B221B !important;
     text-decoration: none !important;
 }
+
+/* Designer-approved delete button with angry red text */
+div.category-form-buttons a[href*="delete"].category-btn-delete {
+    padding: 14px 32px !important;
+    border-radius: 8px !important;
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    border: 1px solid #1B221B !important;
+    background: white !important;  /* Clean white background */
+    color: #dc3545 !important;     /* Angry red text */
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    display: inline-block !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    line-height: 1 !important;
+}
+
+div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
+    background: #f8f9fa !important;  /* Light gray on hover */
+    border-color: #1B221B !important;
+    color: #c82333 !important;       /* Darker angry red on hover */
+    text-decoration: none !important;
+}

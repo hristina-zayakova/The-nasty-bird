@@ -676,3 +676,26 @@ footer h5 {
 .scale-hover:hover {
     transform: scale(1.05);
 }
+
+/* Delete button styling */
+.category-btn-delete {
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid #dc3545;
+    background: #dc3545;
+    color: white;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-btn-delete:hover {
+    background: #c82333;
+    border-color: #c82333;
+    color: white;
+    text-decoration: none;
+}

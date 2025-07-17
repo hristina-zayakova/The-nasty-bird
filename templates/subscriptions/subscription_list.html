@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Subscriptions{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/secondary_apps.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="categories-container">
+    <!-- Header -->
+    <div class="categories-header">
+        <h1 class="categories-title">Subscriptions</h1>
+        <a href="{% url 'add_subscription' %}" class="add-category-btn">Add Subscription</a>
+    </div>
+
+    {% if subscriptions %}
+        <!-- Summary Section -->
+        <div class="chart-section">
+            <h2 class="chart-title">Subscription Costs</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 1rem;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 600; color: #4A931C; margin-bottom: 0.5rem;">
+                        {{ user_currency }} {{ monthly_total|floatformat:2 }}
+                    </div>
+                    <div style="color: #666; font-family: 'Roboto Serif', serif;">Monthly Total</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 600; color: #4A931C; margin-bottom: 0.5rem;">
+                        {{ user_currency }} {{ yearly_total|floatformat:2 }}
+                    </div>
+                    <div style="color: #666; font-family: 'Roboto Serif', serif;">Yearly Total</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subscriptions Table -->
+        <div class="table-section">
+            <h2 class="table-title">All Subscriptions</h2>
+            <table class="categories-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Frequency</th>
+                        <th>Next Payment</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for subscription in subscriptions %}
+                    <tr>
+                        <td class="category-name">{{ subscription.name }}</td>
+                        <td class="category-amount">{{ user_currency }} {{ subscription.amount|floatformat:2 }}</td>
+                        <td style="font-family: 'Roboto Serif', serif; font-size: 14px; color: #1B221B;">
+                            {{ subscription.get_frequency_display }}
+                        </td>
+                        <td style="font-family: 'Roboto Serif', serif; font-size: 14px; color: #1B221B;">
+                            {{ subscription.next_payment_date|date:"M d, Y" }}
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{% url 'edit_subscription' subscription.pk %}" class="btn-edit">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <!-- Empty State -->
+        <div class="chart-section">
+            <div class="empty-state">
+                <p>No subscriptions yet.</p>
+                <a href="{% url 'add_subscription' %}" class="add-category-btn">Add Your First Subscription</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

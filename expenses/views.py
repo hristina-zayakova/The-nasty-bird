@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, UpdateView, ListView
 from django.urls import reverse_lazy
@@ -88,3 +88,11 @@ class CategoryExpensesView(LoginRequiredMixin, ListView):
 
         return context
 
+
+def delete_expense(request, pk):
+    expense = get_object_or_404(Expense, pk=pk, user=request.user)
+    category_id = expense.category.id
+    name = expense.description
+    expense.delete()
+    messages.success(request, f'Expense "{name}" deleted successfully!')
+    return redirect('category_expenses', category_id=category_id)

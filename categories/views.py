@@ -116,3 +116,16 @@ class CategoryListView(LoginRequiredMixin, ListView):
 
         context['categories_with_data'] = categories_with_height
         return context
+
+
+def delete_category(request, pk):
+    category = get_object_or_404(Category, pk=pk, user=request.user)
+    name = category.name
+
+    if category.expenses.count() > 0:
+        messages.error(request, f'Cannot delete category "{name}" because it has expenses. Delete the expenses first.')
+        return redirect('edit_category', pk=pk)
+
+    category.delete()
+    messages.success(request, f'Category "{name}" deleted successfully!')
+    return redirect('categories_list')
