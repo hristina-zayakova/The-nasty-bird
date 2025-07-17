@@ -49,12 +49,6 @@ class Budget(models.Model):
         default=True,
     )
 
-    description = models.TextField(
-        blank=True,
-        null=True,
-        help_text="Optional notes about this budget (e.g., 'Saving for vacation')"
-    )
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -71,8 +65,9 @@ class Budget(models.Model):
             if self.start_date >= self.end_date:
                 raise ValidationError({'end_date': 'End date must be after start date'})
 
-        if self.category and self.category.user != self.user:
-            raise ValidationError({'category': 'Category must belong to the same user'})
+        if self.category and hasattr(self, 'user') and self.user:
+            if self.category.user != self.user:
+                raise ValidationError({'category': 'Category must belong to the same user'})
 
     def save(self, *args, **kwargs):
         self.full_clean()

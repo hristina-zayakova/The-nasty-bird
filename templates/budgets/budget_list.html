@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Budgets{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/secondary_apps.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="categories-container">
+    <!-- Header -->
+    <div class="categories-header">
+        <h1 class="categories-title">Budgets</h1>
+        <a href="{% url 'set_budget' %}" class="add-category-btn">Set Budget</a>
+    </div>
+
+    {% if budgets %}
+        <!-- Budgets Table -->
+        <div class="table-section">
+            <h2 class="table-title">All Budgets</h2>
+            <table class="categories-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Period</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for budget in budgets %}
+                    <tr>
+                        <td class="category-name">
+                            {% if budget.category %}
+                                {{ budget.category.name }}
+                            {% else %}
+                                Overall Budget
+                            {% endif %}
+                        </td>
+                        <td class="category-amount">{{ user_currency }} {{ budget.amount|floatformat:2 }}</td>
+                        <td style="font-family: 'Roboto Serif', serif; font-size: 14px; color: #1B221B;">
+                            {{ budget.get_period_display }}
+                        </td>
+                        <td style="font-family: 'Roboto Serif', serif; font-size: 14px; color: #1B221B;">
+                            {{ budget.start_date|date:"M d, Y" }}
+                        </td>
+                        <td style="font-family: 'Roboto Serif', serif; font-size: 14px; color: #1B221B;">
+                            {{ budget.end_date|date:"M d, Y" }}
+                        </td>
+                        <td style="font-family: 'Roboto Serif', serif; font-size: 14px;">
+                            {% if budget.is_current_period %}
+                                <span style="color: #4A931C; font-weight: 500;">Active</span>
+                            {% else %}
+                                <span style="color: #666;">Inactive</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{% url 'edit_budget' budget.pk %}" class="btn-edit">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <!-- Empty State -->
+        <div class="chart-section">
+            <div class="empty-state">
+                <p>No budgets set yet.</p>
+                <a href="{% url 'set_budget' %}" class="add-category-btn">Set Your First Budget</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

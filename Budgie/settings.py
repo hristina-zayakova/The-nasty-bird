@@ -86,7 +86,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "budgieapp",
         "USER": "postgres",
-        "PASSWORD": "hsz@abv.bg",
+        "PASSWORD": config('DATABASE_PASSWORD'),
         "HOST": "localhost",
         "PORT": "5432",
     }
