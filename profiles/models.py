@@ -132,3 +132,7 @@ class Profile(models.Model):
         if budget:
             return budget.is_over_budget()
         return False
+
+    @property
+    def has_expenses(self):
+        return self.user.expenses.exists()

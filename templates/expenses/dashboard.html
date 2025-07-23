@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Expenses Dashboard - Budgie{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'css/secondary_apps.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="categories-container">
+    <!-- Dashboard Header -->
+    <div class="categories-header">
+        <h1 class="categories-title">Expenses Dashboard</h1>
+        <a href="{% url 'add_expense' %}" class="add-category-btn">
+            Add Expense
+        </a>
+    </div>
+
+    <!-- Date Filter Section -->
+    <div class="chart-section">
+        <h2 class="chart-title">Filter by Date Range</h2>
+        <form method="get" class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label for="date_from" class="category-form-label">From Date</label>
+                <input type="date" class="category-form-input" id="date_from" name="date_from" value="{{ date_from }}">
+            </div>
+            <div class="col-md-4">
+                <label for="date_to" class="category-form-label">To Date</label>
+                <input type="date" class="category-form-input" id="date_to" name="date_to" value="{{ date_to }}">
+            </div>
+            <div class="col-md-4">
+                <div style="display: flex; justify-content: center; gap: 0.5rem;">
+                    <button type="submit" class="add-category-btn">Filter</button>
+                    <a href="{% url 'expenses_dashboard' %}" class="add-category-btn" style="display: inline-block; text-align: center;">Reset</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% if monthly_chart_data %}
+        <!-- Custom Chart Section -->
+        <div class="chart-section">
+            <h2 class="chart-title">Expenses Over Time</h2>
+            <div class="chart-container">
+                <div class="chart-y-labels">
+                    {% for label in y_labels %}
+                        <span>{{ user_currency }}{{ label|floatformat:0 }}</span>
+                    {% endfor %}
+                </div>
+                <div class="chart-bars">
+                    {% for item in monthly_chart_data %}
+                        <div class="chart-bar">
+                            <div class="bar" style="height: {{ item.bar_height }}px; min-height: 5px;"></div>
+                            <div class="bar-label">{{ item.month }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Statistics -->
+    <div class="chart-section">
+        <h2 class="chart-title">Summary Statistics</h2>
+        <div class="row justify-content-center g-3">
+            <div class="col-lg-3 col-md-6">
+                <div style="text-align: center; padding: 1.5rem; border: 1px solid #E0E0E0; border-radius: 8px; height: 100%;">
+                    <div class="category-amount" style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+                        {{ user_currency }}{{ total_expenses|floatformat:2 }}
+                    </div>
+                    <div class="category-form-label">Total Expenses</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div style="text-align: center; padding: 1.5rem; border: 1px solid #E0E0E0; border-radius: 8px; height: 100%;">
+                    <div class="category-amount" style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+                        {{ expenses_count }}
+                    </div>
+                    <div class="category-form-label">Total Transactions</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div style="text-align: center; padding: 1.5rem; border: 1px solid #E0E0E0; border-radius: 8px; height: 100%;">
+                    <div class="category-amount" style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+                        {{ user_currency }}{{ average_expense|floatformat:2 }}
+                    </div>
+                    <div class="category-form-label">Average Expense</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div style="text-align: center; padding: 1.5rem; border: 1px solid #E0E0E0; border-radius: 8px; height: 100%;">
+                    <div class="category-amount" style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+                        {{ user_currency }}{{ daily_average|floatformat:2 }}
+                    </div>
+                    <div class="category-form-label">Daily Average</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Top Categories -->
+        <div class="chart-section">
+            <h2 class="chart-title">Top Categories</h2>
+            {% for category in top_categories %}
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid #F0F0F0;">
+                <div>
+                    <div class="category-name">{{ category.category__name }}</div>
+                    <div class="category-description">{{ category.count }} transaction{{ category.count|pluralize }}</div>
+                </div>
+                <div class="category-amount">{{ user_currency }}{{ category.total|floatformat:2 }}</div>
+            </div>
+            {% empty %}
+            <div class="empty-state">
+                <p>No categories found</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Recent Expenses Table -->
+        <div class="table-section">
+            <h2 class="table-title">Recent Expenses</h2>
+            <table class="categories-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in recent_expenses %}
+                    <tr>
+                        <td>{{ expense.date|date:"M d, Y" }}</td>
+                        <td class="category-name">{{ expense.category.name }}</td>
+                        <td class="category-description">{{ expense.description }}</td>
+                        <td class="category-amount">{{ user_currency }}{{ expense.amount|floatformat:2 }}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{% url 'edit_expense' expense.id %}" class="btn-edit">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            <p>No expenses found</p>
+                            <a href="{% url 'add_expense' %}" class="add-category-btn">Add Your First Expense</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <!-- Empty State -->
+        <div class="chart-section">
+            <div class="empty-state">
+                <p>No expenses yet.</p>
+                <a href="{% url 'add_expense' %}" class="add-category-btn">Add Your First Expense</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

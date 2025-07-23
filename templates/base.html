@@ -31,9 +31,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'add_expense' %}">
+                            {% if user.profile.has_expenses %}
+                                <a class="nav-link" href="{% url 'expenses_dashboard' %}">
                                 Expenses
+                                </a>
+                            {% else %}
+                            <a class="nav-link" href="{% url 'add_expense' %}">
+                            Expenses
                             </a>
+                            {% endif %}
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'categories_list' %}">
