@@ -26,7 +26,7 @@
                     {% if user.is_authenticated %}
                         <!-- Authenticated User Menu -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/">
+                            <a class="nav-link" href="{% url 'main_dashboard' %}">
                                 Dashboard
                             </a>
                         </li>
@@ -59,7 +59,7 @@
                                 <li><a class="dropdown-item" href="{% url 'edit_profile' %}">
                                     Profile
                                 </a></li>
-                                <li><a class="dropdown-item" href="/budgets/">
+                                <li><a class="dropdown-item" href="/budgets/"><!--TODO careful with links -->
                                     Budgets
                                 </a></li>
                                <li><hr class="dropdown-divider"></li>
@@ -71,13 +71,14 @@
                     {% else %}
                         <!-- Public Menu -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#features">Features</a>
+                            <a class="nav-link" href="#features">Features</a><!--TODO careful with links -->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
+                            <a class="nav-link" href="#about">About</a><!--TODO careful with links -->
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">Login</a>
+
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-budgie-primary ms-2" href="{% url 'signup' %}">

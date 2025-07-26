@@ -343,3 +343,559 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
     color: #c82333 !important;       /* Darker angry red on hover */
     text-decoration: none !important;
 }
+
+/* Main Dashboard Styles - Clean Version (No Warnings) */
+
+.dashboard-container {
+    padding: 2rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: #FFFFFF;
+}
+
+.dashboard-title {
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: #1B221B;
+    padding: 24px 0;
+    margin-bottom: 2rem;
+}
+
+.dashboard-cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    gap: 24px;
+    width: 100%;
+    max-width: 1344px;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard-cards {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Dashboard Card - Exact Figma Structure */
+.dashboard-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 24px;
+    width: 432px;
+    height: 228px;
+    background: #FFFFFF;
+    border: 1px solid #1B221B;
+    box-shadow: 2px 2px 0 #1B221B;
+    border-radius: 16px;
+    flex: none;
+    flex-grow: 1;
+}
+
+/* Card Header Frame */
+.card-header-frame {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    gap: 128px;
+    width: 384px;
+    height: 24px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.card-title {
+    width: 384px;
+    height: 24px;
+    font-family: 'Roboto Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    color: #1B221B;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    margin: 0;
+}
+
+/* Number Detail Section */
+.number-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 4px;
+    width: 384px;
+    height: 60px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.card-amount {
+    width: 384px;
+    height: 40px;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    color: #1B221B;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0;
+}
+
+.card-subtitle {
+    width: 384px;
+    height: 16px;
+    font-family: 'Roboto Serif', serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #4A931C;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0;
+}
+
+/* Button Styling - Exact Figma */
+.add-category-btn {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 32px;
+    gap: 10px;
+    width: auto;
+    min-width: 149px;
+    height: 48px;
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B221B;
+}
+
+.add-category-btn:hover {
+    background: #FFE55C;
+    transform: translateY(-1px);
+}
+
+.add-category-btn:active {
+    transform: translateY(0);
+}
+
+/* Budget Card Specific Layout */
+.budget-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+    gap: 20px;
+    width: 384px;
+    height: 128px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.budget-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0;
+    gap: 20px;
+    width: 235px;
+    height: 128px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.budget-number-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 4px;
+    width: 235px;
+    height: 60px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.budget-amount {
+    width: 235px;
+    height: 40px;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    color: #1B221B;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0;
+}
+
+.budget-subtitle {
+    width: 235px;
+    height: 16px;
+    font-family: 'Roboto Serif', serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #4A931C;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0;
+}
+
+.budget-button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 32px;
+    gap: 10px;
+    width: 149px;
+    height: 48px;
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B221B;
+}
+
+/* Donut Chart - Working with your existing HTML */
+.budget-chart-frame-884 {
+    width: 129px;
+    height: 128px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    position: relative;
+}
+
+.donut-background {
+    position: absolute;
+    left: 0;
+    right: 0.78%;
+    top: 0;
+    bottom: -0.78%;
+    background: #4A931C;
+    opacity: 0.2;
+    transform: rotate(-90deg);
+    border-radius: 50%;
+}
+
+/* Recent Expenses Section */
+.recent-expenses-section {
+    background: #FFFFFF;
+    border: 1px solid #1B221B;
+    border-radius: 16px;
+    box-shadow: 2px 2px 0 #1B221B;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.section-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 24px;
+    width: 100%;
+    height: 80px;
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+
+.section-title {
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: #1B221B;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0;
+}
+
+.section-button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 32px;
+    gap: 10px;
+    width: 132px;
+    height: 48px;
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    text-decoration: none;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B221B;
+}
+
+/* Table Styles */
+.expenses-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.expenses-table thead tr {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 24px;
+    width: 100%;
+    height: 56px;
+    border-bottom: 1px solid #1B221B;
+}
+
+.expenses-table th {
+    font-family: 'Roboto Serif', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #1B221B;
+    padding: 8px 16px 8px 0;
+    text-align: left;
+    border: none;
+}
+
+.expenses-table th:first-child {
+    width: 112px;
+    padding: 8px 16px 8px 0;
+}
+
+.expenses-table th:nth-child(2) {
+    width: 131px;
+    padding: 8px 0;
+}
+
+.expenses-table th:nth-child(3) {
+    flex-grow: 1;
+    padding: 8px 0;
+}
+
+.expenses-table th:nth-child(4) {
+    width: 100px;
+    padding: 8px 16px 8px 0;
+}
+
+.expenses-table th:nth-child(5) {
+    width: 241px;
+    padding: 8px 16px 8px 0;
+}
+
+.expenses-table tbody tr {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0 24px;
+    width: 100%;
+    height: 72px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #1B221B;
+}
+
+.expenses-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.expenses-table td {
+    font-family: 'Roboto Serif', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #1B221B;
+    padding: 8px 16px 8px 0;
+    border: none;
+}
+
+.expenses-table td:first-child {
+    width: 112px;
+}
+
+.expenses-table td:nth-child(2) {
+    width: 131px;
+}
+
+.expenses-table td:nth-child(3) {
+    flex-grow: 1;
+}
+
+.expenses-table td:nth-child(4) {
+    width: 100px;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.expenses-table td:nth-child(5) {
+    width: 241px;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* Edit Button */
+.btn-edit {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 24px;
+    gap: 10px;
+    width: 82px;
+    height: 48px;
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    text-decoration: none;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B221B;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background: #FFE55C;
+    transform: translateY(-1px);
+}
+
+.btn-edit:active {
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 1rem;
+    }
+
+    .dashboard-card {
+        width: 100%;
+        height: auto;
+    }
+
+    .budget-info {
+        flex-direction: column;
+        gap: 16px;
+        height: auto;
+    }
+
+    .card-title,
+    .card-amount,
+    .card-subtitle,
+    .budget-amount,
+    .budget-subtitle {
+        width: 100%;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+        height: auto;
+        padding: 16px 24px;
+    }
+
+    .expenses-table thead tr,
+    .expenses-table tbody tr {
+        flex-direction: column;
+        height: auto;
+        padding: 16px 24px;
+    }
+
+    .expenses-table th,
+    .expenses-table td {
+        width: 100% !important;
+        padding: 8px 0;
+    }
+}
