@@ -369,7 +369,7 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0;
+    padding: 0 12px;
     gap: 24px;
     width: 100%;
     max-width: 1344px;
@@ -438,7 +438,7 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
     flex-direction: column;
     align-items: flex-start;
     padding: 0;
-    gap: 4px;
+    gap: 0;
     width: 384px;
     height: 60px;
     flex: none;
@@ -553,7 +553,7 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
     flex-direction: column;
     align-items: flex-start;
     padding: 0;
-    gap: 4px;
+    gap: 0;
     width: 235px;
     height: 60px;
     flex: none;
@@ -653,7 +653,9 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
+    width: 100%;
+    overflow: hidden;
+    }
 
 .section-header {
     display: flex;
@@ -711,6 +713,8 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
 .expenses-table {
     width: 100%;
     border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 0 0 16px 16px; /* Only bottom corners since header is separate */
 }
 
 .expenses-table thead tr {
@@ -722,6 +726,7 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
     width: 100%;
     height: 56px;
     border-bottom: 1px solid #1B221B;
+    border-radius: 16px 16px 0 0; /* Top corners for the header */
 }
 
 .expenses-table th {
@@ -777,6 +782,7 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
 
 .expenses-table tbody tr:last-child {
     border-bottom: none;
+    border-radius: 0 0 16px 16px;
 }
 
 .expenses-table td {
@@ -815,6 +821,25 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
     width: 241px;
     justify-content: flex-end;
     gap: 12px;
+}
+
+.expenses-table td:nth-child(5) {
+    width: 241px;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* ADD THESE NEW RULES HERE */
+/* Top corners for header */
+.expenses-table thead tr {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+/* Bottom corners for last row */
+.expenses-table tbody tr:last-child {
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
 }
 
 /* Edit Button */
@@ -862,6 +887,8 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
     .dashboard-card {
         width: 100%;
         height: auto;
+        /* gap: 20px; Reduce from 24px to 20px for tighter layout */
+        /*justify-content: space-between;  This pushes buttons to bottom */
     }
 
     .budget-info {
@@ -876,6 +903,19 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
     .budget-amount,
     .budget-subtitle {
         width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card-amount,
+    .budget-amount {
+        margin-bottom: 0;
+        line-height: 1.1;
+    }
+
+    .card-subtitle,
+    .budget-subtitle {
+        margin-top: 0;
     }
 
     .section-header {
@@ -899,3 +939,38 @@ div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
         padding: 8px 0;
     }
 }
+
+/* ALTERNATIVE SPACING FIX - Using transforms */
+.card-subtitle {
+    transform: translateY(-22px); /* Move subtitle up 22px closer to amount */
+}
+
+.budget-subtitle {
+    transform: translateY(-22px); /* Same for budget card */
+}
+
+/* Move buttons up closer to the content */
+.add-category-btn {
+    transform: translateY(-16px); /* Move buttons up 16px */
+}
+
+.add-category-btn:hover {
+    background: #FFE55C;
+    transform: translateY(-17px); /* -16px (spacing) + -1px (hover) = -17px */
+}
+
+.add-category-btn:active {
+    transform: translateY(-16px); /* Back to original spacing position */
+}
+
+.report-type-select {
+    height: 48px; /* Same height as the button */
+    padding: 14px 16px; /* Match button padding */
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    background: white;
+    color: #1B221B;
+}
+
