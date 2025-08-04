@@ -99,12 +99,31 @@ class Budget(models.Model):
             total=models.Sum('amount')
         )['total'] or Decimal('0.00')
 
+    def get_subscription_expenses(self):
+
+        from subscriptions.models import Subscription
+        from decimal import Decimal
+
+        subscriptions = Subscription.objects.filter(
+            user=self.user,
+            created_at__date__lte=self.end_date,
+        )
+
+        total = Decimal('0')
+        for sub in subscriptions:
+            if sub.frequency == 'monthly':
+                total += sub.amount
+            elif sub.frequency == 'yearly':
+                total += sub.amount
+
+        return total
+
     def get_remaining_budget(self):
-        return self.amount - self.get_total_expenses()
+        return self.amount - self.get_total_expenses() - self.get_subscription_expenses()
 
     def get_budget_percentage_used(self):
-        spent = self.get_total_expenses()
-        return min((spent / self.amount) * 100, 100)
+        spent = self.get_total_expenses() + self.get_subscription_expenses()
+        return (spent / self.amount) * 100 if self.amount > 0 else 0
 
     def is_over_budget(self):
        return self.get_remaining_budget() < 0

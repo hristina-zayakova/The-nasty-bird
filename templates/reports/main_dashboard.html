@@ -9,7 +9,15 @@
 
 {% block content %}
 <div class="dashboard-container">
-   <h1 class="dashboard-title">Dashboard</h1>
+   <h1 class="dashboard-title">
+    {% if show_monthly_summary %}
+        Monthly Financial Summary - {{ period_start|date:"F Y" }}
+    {% elif show_yearly_overview %}
+        Annual Financial Overview - {{ period_start.year }}
+    {% else %}
+        Dashboard
+    {% endif %}
+</h1>
 
    <!-- Wrap everything in the same width container -->
    <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem; width: 100%; max-width: 1344px;">
@@ -38,10 +46,10 @@
                        {% if budget_amount %}
                            {% if is_over_budget %}
                                <div class="card-amount" style="color: #ff4444;">-{{ user_currency }}{{ budget_remaining|floatformat:0 }}</div>
-                               <div class="card-subtitle" style="color: #ff4444;">of {{ user_currency }}{{ budget_amount|floatformat:0 }} ({{ budget_percentage|floatformat:0 }}% over)</div>
+                               <div class="card-subtitle" style="color: #ff4444;">of {{ user_currency }}{{ budget_amount|floatformat:0 }} ({{ over_percentage_display|floatformat:2 }}% over)</div>
                            {% else %}
                                <div class="card-amount" style="color: #4A931C;">{{ user_currency }}{{ budget_remaining|floatformat:0 }}</div>
-                               <div class="card-subtitle">of {{ user_currency }}{{ budget_amount|floatformat:0 }} ({{ budget_percentage|floatformat:0 }}%)</div>
+                               <div class="card-subtitle">of {{ user_currency }}{{ budget_amount|floatformat:0 }} ({{ budget_percentage|floatformat:1 }}%)</div>
                            {% endif %}
                            <a href="{% url 'set_budget' %}" class="add-category-btn">Set Budget</a>
                        {% else %}
@@ -51,10 +59,10 @@
                    </div>
 
                   {% if budget_amount %}
-           <div style="width: 120px; height: 120px; border-radius: 50%; background: conic-gradient({% if is_over_budget %}#ff4444{% else %}#4A931C{% endif %} 0deg {% widthratio budget_percentage 1 3.6 %}deg, #e0e0e0 {% widthratio budget_percentage 1 3.6 %}deg 360deg); display: flex; align-items: center; justify-content: center;">
-               <div style="width: 60px; height: 60px; background: white; border-radius: 50%;"></div>
-           </div>
-           {% endif %}
+                        <div style="width: 120px; height: 120px; border-radius: 50%; background: {% if is_over_budget %}conic-gradient(#ff4444 0deg {{ over_degrees }}deg, #e0e0e0 {{ over_degrees }}deg 360deg){% else %}conic-gradient(#4A931C 0deg {% widthratio budget_percentage 1 3.6 %}deg, #e0e0e0 {% widthratio budget_percentage 1 3.6 %}deg 360deg){% endif %}; display: flex; align-items: center; justify-content: center;">
+                            <div style="width: 60px; height: 60px; background: white; border-radius: 50%;"></div>
+                        </div>
+                    {% endif %}
                </div>
            </div>
 

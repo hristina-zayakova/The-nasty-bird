@@ -10,6 +10,9 @@ user = get_user_model()
 class CustomUserAdmin(BaseUserAdmin):
     list_display = ['email', 'is_active', 'is_staff', 'onboarding_step']
     ordering = ['email']
+    list_filter = ['is_active', 'is_staff', 'onboarding_step', 'created_at']
+    search_fields = ['email']
+    list_per_page = 25
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),

@@ -89,22 +89,38 @@ class Report(models.Model):
         self.transactions_count = expense_stats['count'] or 0
         self.categories_analyzed = expenses_qs.values('category').distinct().count()
 
-        if hasattr(self.user, 'subscriptions'):
-            subscription_stats = Subscription.objects.filter(
-                user=self.user,
-            ).aggregate(total=Sum('amount'))
+        subscription_total = Decimal('0')
+        period_subscriptions = Subscription.objects.filter(
+            user=self.user,
+            created_at__date__lte=self.period_end,
+        )
 
-            self.total_subscriptions = subscription_stats['total'] or Decimal('0')
+        for sub in period_subscriptions:
+            if sub.frequency == 'monthly':
+                if sub.created_at.date() <= self.period_end:
+                    if self.report_type == 'yearly_overview':
+                        sub_start = max(sub.created_at.date().replace(day=1), self.period_start)
+                        months_active = ((self.period_end.year - sub_start.year) * 12 +
+                                         (self.period_end.month - sub_start.month) + 1)
+                        subscription_total += sub.amount * months_active
+                    else:
+                        subscription_total += sub.amount
+            elif sub.frequency == 'yearly':
+                if sub.created_at.date() <= self.period_end:
+                    subscription_total += sub.amount
+
+        self.total_subscriptions = subscription_total
 
         budget = Budget.objects.filter(
             user=self.user,
+            category=None,
             start_date__lte=self.period_end,
-            end_date__gte=self.period_start,
-            is_active=True
-        ).first()
+            end_date__gte=self.period_start
+        ).order_by('-created_at').first()
 
         if budget and budget.amount > 0:
-            utilization = (self.total_expenses / budget.amount) * 100
-            self.budget_utilization = min(utilization, Decimal('999.99'))
+            total_used = self.total_expenses + subscription_total
+            utilization = (total_used / budget.amount) * 100
+            self.budget_utilization = utilization
         else:
             self.budget_utilization = None
