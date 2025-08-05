@@ -1,0 +1,220 @@
+/* ========== Authentication Forms - Fixed Logo ========== */
+
+.auth-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 96px 0px;
+    gap: 72px;
+    width: 100vw;
+    height: 100vh;
+    background:
+        radial-gradient(193.34% 155.87% at 50% -1.55%, rgba(255, 252, 168, 0.7) 31.17%, rgba(74, 147, 28, 0.7) 100%) 0 0 / 100% 60%,
+        #FFFCA8;
+    background-repeat: no-repeat;
+}
+
+
+
+/* Logo section - exact Figma specs */
+.auth-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 5.61px;
+    width: 306px;
+    height: 72.99px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    z-index: 1;
+    margin: 0 auto;
+}
+
+.auth-logo-image {
+    width: 306px;
+    height: 72.99px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.auth-logo-text {
+    width: 217px;
+    height: 44px;
+    font-family: 'Sansita Swashed', cursive;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 67.3761px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #026600;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+/* Main form card - exact Figma specs */
+.auth-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px;
+    width: 495px;
+    background: #FFFFFF;
+    border: 1px solid #1B221B;
+    box-shadow: 0px 112px 67px rgba(0, 0, 0, 0.02), 0px 50px 50px rgba(0, 0, 0, 0.03), 0px 12px 27px rgba(0, 0, 0, 0.03);
+    border-radius: 16px;
+}
+
+/* Form title */
+.auth-title {
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: #1B221B;
+    margin-bottom: 32px;
+    width: 100%;
+}
+
+/* Form group container */
+.auth-form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 12px;
+    width: 431px;
+    margin-bottom: 24px;
+}
+
+/* Labels */
+.auth-form-group label {
+    font-family: 'Roboto Serif', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B221B;
+    width: 431px;
+    height: 20px;
+}
+
+/* Input fields - exact Figma specs */
+.auth-input {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 14px 24px;
+    gap: 10px;
+    width: 431px;
+    height: 48px;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    font-family: 'Roboto Serif', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B221B;
+    background: #FFFFFF;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: #1B221B;
+}
+
+/* Button group - exact Figma specs */
+.auth-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 24px;
+    width: 431px;
+    height: 48px;
+    margin-top: 24px;
+}
+
+/* Primary button (yellow) - exact Figma specs */
+.auth-btn-primary {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 32px;
+    gap: 10px;
+    width: 160px;
+    height: 48px;
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    color: #1B221B;
+    cursor: pointer;
+}
+
+.auth-btn-primary:hover {
+    background: #FFD700;
+}
+
+/* "or" text - exact Figma specs */
+.auth-or {
+    font-family: 'Roboto Serif', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #1B221B;
+    text-align: center;
+}
+
+/* Secondary button (outlined) - exact Figma specs */
+.auth-btn-secondary {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 32px;
+    gap: 10px;
+    width: 160px;
+    height: 48px;
+    background: transparent;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    color: #1B221B;
+    text-decoration: none;
+}
+
+.auth-btn-secondary:hover {
+    background: rgba(255, 223, 62, 0.1);
+    color: #1B221B;
+    text-decoration: none;
+}
+
+/* Signup form  */
+.auth-card.signup {
+    height: 520px;
+}
+.auth-card.signup .auth-title {
+    margin-bottom: 64px;
+}

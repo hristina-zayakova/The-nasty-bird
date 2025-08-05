@@ -1,0 +1,976 @@
+/* Categories Dashboard Styling */
+
+/* Override the yellow body background for app pages */
+body {
+    background-color: #FFFFFF !important;
+}
+
+/* Apply gradient only to navbar */
+.navbar {
+    background: linear-gradient(180deg, rgba(255, 224, 62, 0.3) 0%, rgba(254, 224, 62, 0) 100%) !important;
+    border-top: 1px solid #1B221B;
+}
+
+.categories-container {
+    padding: 2rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #FFFFFF;
+}
+
+.categories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.categories-title {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #1B221B;
+    letter-spacing: -0.02em;
+}
+
+.add-category-btn {
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    color: #1B221B;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.add-category-btn:hover {
+    background: #FFD700;
+    color: #1B221B;
+    text-decoration: none;
+}
+
+.chart-section {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.chart-title {
+    font-family: 'Roboto Serif', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1B221B;
+    margin-bottom: 1.5rem;
+}
+
+.chart-container {
+    height: 300px;
+    position: relative;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    height: 240px;
+    padding: 0 1rem;
+    border-bottom: 1px solid #E0E0E0;
+    margin-bottom: 1rem;
+}
+
+.chart-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.bar {
+    background: #4A931C;
+    width: 40px;
+    border-radius: 4px 4px 0 0;
+    transition: background-color 0.2s;
+}
+
+.bar:hover {
+    background: #3A7A15;
+}
+
+.bar-label {
+    font-family: 'Roboto Serif', serif;
+    font-size: 12px;
+    color: #1B221B;
+    text-align: center;
+    margin-top: 0.5rem;
+    word-break: break-word;
+}
+
+.chart-y-labels {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Roboto Serif', serif;
+    font-size: 12px;
+    color: #666;
+}
+
+.table-section {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table-title {
+    font-family: 'Roboto Serif', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1B221B;
+    margin-bottom: 1.5rem;
+}
+
+.categories-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.categories-table th {
+    font-family: 'Roboto Serif', serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1B221B;
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 2px solid #E0E0E0;
+}
+
+.categories-table td {
+    font-family: 'Roboto Serif', serif;
+    font-size: 14px;
+    color: #1B221B;
+    padding: 1rem;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.category-name {
+    font-weight: 500;
+}
+
+.category-description {
+    color: #666;
+    max-width: 300px;
+}
+
+.category-amount {
+    font-weight: 600;
+    color: #4A931C;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-edit, .btn-add-expense {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid #1B221B;
+    transition: all 0.2s;
+}
+
+.btn-edit {
+    background: #FFDF3E;
+    color: #1B221B;
+}
+
+.btn-edit:hover {
+    background: #FFD700;
+    color: #1B221B;
+    text-decoration: none;
+}
+
+.btn-add-expense {
+    background: white;
+    color: #1B221B;
+}
+
+.btn-add-expense:hover {
+    background: #F5F5F5;
+    color: #1B221B;
+    text-decoration: none;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+}
+
+.empty-state p {
+    font-family: 'Roboto Serif', serif;
+    font-size: 16px;
+    margin-bottom: 1rem;
+}
+
+/* Category Form Styling */
+.category-form-container {
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.category-form-title {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #1B221B;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+}
+
+.category-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.category-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Roboto Serif', serif;
+    font-size: 14px;
+    color: #1B221B;
+}
+
+.category-form-input {
+    width: 100%;
+    padding: 14px 24px;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    font-family: 'Roboto Serif', serif;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.category-form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.category-btn-save, .category-btn-cancel {
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid #1B221B;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.category-btn-save {
+    background: #FFDF3E;
+    color: #1B221B;
+}
+
+.category-btn-cancel {
+    background: white;
+    color: #1B221B;
+}
+
+/* More specific selector to override default link styles */
+.categories-table .action-buttons .btn-show-expenses,
+a.btn-show-expenses {
+    padding: 8px 16px !important;
+    border-radius: 6px !important;
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    border: 1px solid #1B221B !important;
+    background: white !important;
+    color: #1B221B !important;
+    display: inline-block !important;
+    box-sizing: border-box !important;
+}
+
+.categories-table .action-buttons .btn-show-expenses:hover,
+a.btn-show-expenses:hover {
+    background: #F5F5F5 !important;
+    color: #1B221B !important;
+    text-decoration: none !important;
+}
+
+/* Designer-approved delete button with angry red text */
+div.category-form-buttons a[href*="delete"].category-btn-delete {
+    padding: 14px 32px !important;
+    border-radius: 8px !important;
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    border: 1px solid #1B221B !important;
+    background: white !important;  /* Clean white background */
+    color: #dc3545 !important;     /* Angry red text */
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    display: inline-block !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    line-height: 1 !important;
+}
+
+div.category-form-buttons a[href*="delete"].category-btn-delete:hover {
+    background: #f8f9fa !important;  /* Light gray on hover */
+    border-color: #1B221B !important;
+    color: #c82333 !important;       /* Darker angry red on hover */
+    text-decoration: none !important;
+}
+
+/* Main Dashboard Styles - Clean Version (No Warnings) */
+
+.dashboard-container {
+    padding: 2rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: #FFFFFF;
+}
+
+.dashboard-title {
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: #1B221B;
+    padding: 24px 0;
+    margin-bottom: 2rem;
+}
+
+.dashboard-cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 12px;
+    gap: 24px;
+    width: 100%;
+    max-width: 1344px;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard-cards {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Dashboard Card - Exact Figma Structure */
+.dashboard-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 24px;
+    width: 432px;
+    height: 228px;
+    background: #FFFFFF;
+    border: 1px solid #1B221B;
+    box-shadow: 2px 2px 0 #1B221B;
+    border-radius: 16px;
+    flex: none;
+    flex-grow: 1;
+}
+
+/* Card Header Frame */
+.card-header-frame {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    gap: 128px;
+    width: 384px;
+    height: 24px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.card-title {
+    width: 384px;
+    height: 24px;
+    font-family: 'Roboto Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    color: #1B221B;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    margin: 0;
+}
+
+/* Number Detail Section */
+.number-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 0;
+    width: 384px;
+    height: 60px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.card-amount {
+    width: 384px;
+    height: 40px;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    color: #1B221B;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0;
+}
+
+.card-subtitle {
+    width: 384px;
+    height: 16px;
+    font-family: 'Roboto Serif', serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #4A931C;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0;
+}
+
+/* Button Styling - Exact Figma */
+.add-category-btn {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 32px;
+    gap: 10px;
+    width: auto;
+    min-width: 149px;
+    height: 48px;
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B221B;
+}
+
+.add-category-btn:hover {
+    background: #FFE55C;
+    transform: translateY(-1px);
+}
+
+.add-category-btn:active {
+    transform: translateY(0);
+}
+
+/* Budget Card Specific Layout */
+.budget-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+    gap: 20px;
+    width: 384px;
+    height: 128px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.budget-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0;
+    gap: 20px;
+    width: 235px;
+    height: 128px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.budget-number-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 0;
+    width: 235px;
+    height: 60px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.budget-amount {
+    width: 235px;
+    height: 40px;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    color: #1B221B;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0;
+}
+
+.budget-subtitle {
+    width: 235px;
+    height: 16px;
+    font-family: 'Roboto Serif', serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #4A931C;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0;
+}
+
+.budget-button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 32px;
+    gap: 10px;
+    width: 149px;
+    height: 48px;
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B221B;
+}
+
+/* Donut Chart - Working with your existing HTML */
+.budget-chart-frame-884 {
+    width: 129px;
+    height: 128px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    position: relative;
+}
+
+.donut-background {
+    position: absolute;
+    left: 0;
+    right: 0.78%;
+    top: 0;
+    bottom: -0.78%;
+    background: #4A931C;
+    opacity: 0.2;
+    transform: rotate(-90deg);
+    border-radius: 50%;
+}
+
+/* Recent Expenses Section */
+.recent-expenses-section {
+    background: #FFFFFF;
+    border: 1px solid #1B221B;
+    border-radius: 16px;
+    box-shadow: 2px 2px 0 #1B221B;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    overflow: hidden;
+    }
+
+.section-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 24px;
+    width: 100%;
+    height: 80px;
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+
+.section-title {
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: #1B221B;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0;
+}
+
+.section-button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 32px;
+    gap: 10px;
+    width: 132px;
+    height: 48px;
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    text-decoration: none;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B221B;
+}
+
+/* Table Styles */
+.expenses-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 0 0 16px 16px; /* Only bottom corners since header is separate */
+}
+
+.expenses-table thead tr {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 24px;
+    width: 100%;
+    height: 56px;
+    border-bottom: 1px solid #1B221B;
+    border-radius: 16px 16px 0 0; /* Top corners for the header */
+}
+
+.expenses-table th {
+    font-family: 'Roboto Serif', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #1B221B;
+    padding: 8px 16px 8px 0;
+    text-align: left;
+    border: none;
+}
+
+.expenses-table th:first-child {
+    width: 112px;
+    padding: 8px 16px 8px 0;
+}
+
+.expenses-table th:nth-child(2) {
+    width: 131px;
+    padding: 8px 0;
+}
+
+.expenses-table th:nth-child(3) {
+    flex-grow: 1;
+    padding: 8px 0;
+}
+
+.expenses-table th:nth-child(4) {
+    width: 100px;
+    padding: 8px 16px 8px 0;
+}
+
+.expenses-table th:nth-child(5) {
+    width: 241px;
+    padding: 8px 16px 8px 0;
+}
+
+.expenses-table tbody tr {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0 24px;
+    width: 100%;
+    height: 72px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #1B221B;
+}
+
+.expenses-table tbody tr:last-child {
+    border-bottom: none;
+    border-radius: 0 0 16px 16px;
+}
+
+.expenses-table td {
+    font-family: 'Roboto Serif', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #1B221B;
+    padding: 8px 16px 8px 0;
+    border: none;
+}
+
+.expenses-table td:first-child {
+    width: 112px;
+}
+
+.expenses-table td:nth-child(2) {
+    width: 131px;
+}
+
+.expenses-table td:nth-child(3) {
+    flex-grow: 1;
+}
+
+.expenses-table td:nth-child(4) {
+    width: 100px;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.expenses-table td:nth-child(5) {
+    width: 241px;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.expenses-table td:nth-child(5) {
+    width: 241px;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* ADD THESE NEW RULES HERE */
+/* Top corners for header */
+.expenses-table thead tr {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+/* Bottom corners for last row */
+.expenses-table tbody tr:last-child {
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+/* Edit Button */
+.btn-edit {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 24px;
+    gap: 10px;
+    width: 82px;
+    height: 48px;
+    background: #FFDF3E;
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    text-decoration: none;
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B221B;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background: #FFE55C;
+    transform: translateY(-1px);
+}
+
+.btn-edit:active {
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 1rem;
+    }
+
+    .dashboard-card {
+        width: 100%;
+        height: auto;
+        /* gap: 20px; Reduce from 24px to 20px for tighter layout */
+        /*justify-content: space-between;  This pushes buttons to bottom */
+    }
+
+    .budget-info {
+        flex-direction: column;
+        gap: 16px;
+        height: auto;
+    }
+
+    .card-title,
+    .card-amount,
+    .card-subtitle,
+    .budget-amount,
+    .budget-subtitle {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card-amount,
+    .budget-amount {
+        margin-bottom: 0;
+        line-height: 1.1;
+    }
+
+    .card-subtitle,
+    .budget-subtitle {
+        margin-top: 0;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+        height: auto;
+        padding: 16px 24px;
+    }
+
+    .expenses-table thead tr,
+    .expenses-table tbody tr {
+        flex-direction: column;
+        height: auto;
+        padding: 16px 24px;
+    }
+
+    .expenses-table th,
+    .expenses-table td {
+        width: 100% !important;
+        padding: 8px 0;
+    }
+}
+
+/* ALTERNATIVE SPACING FIX - Using transforms */
+.card-subtitle {
+    transform: translateY(-22px); /* Move subtitle up 22px closer to amount */
+}
+
+.budget-subtitle {
+    transform: translateY(-22px); /* Same for budget card */
+}
+
+/* Move buttons up closer to the content */
+.add-category-btn {
+    transform: translateY(-16px); /* Move buttons up 16px */
+}
+
+.add-category-btn:hover {
+    background: #FFE55C;
+    transform: translateY(-17px); /* -16px (spacing) + -1px (hover) = -17px */
+}
+
+.add-category-btn:active {
+    transform: translateY(-16px); /* Back to original spacing position */
+}
+
+.report-type-select {
+    height: 48px; /* Same height as the button */
+    padding: 14px 16px; /* Match button padding */
+    border: 1px solid #1B221B;
+    border-radius: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    background: white;
+    color: #1B221B;
+}
+
